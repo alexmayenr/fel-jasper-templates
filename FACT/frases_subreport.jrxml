@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="frases_subreport" language="groovy" pageWidth="532" pageHeight="50" columnWidth="532" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b9e5d381-1df3-41ae-a468-97413cfee2f7">
+	<property name="ireport.zoom" value="1.7715610000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<scriptlet name="FRASES" class="net.sf.jasperreports.engine.JRDefaultScriptlet"/>
+	<queryString language="xPath">
+		<![CDATA[//frases/frase]]>
+	</queryString>
+	<field name="tipo-frase" class="java.lang.String">
+		<fieldDescription><![CDATA[tipo-frase]]></fieldDescription>
+	</field>
+	<field name="codigo-escenario" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo-escenario]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="fecha-resolucion" class="java.lang.String">
+		<fieldDescription><![CDATA[fecha-resolucion]]></fieldDescription>
+	</field>
+	<field name="numero-resolucion" class="java.lang.String">
+		<fieldDescription><![CDATA[numero-resolucion]]></fieldDescription>
+	</field>
+	<variable name="FRASE" class="java.lang.String">
+		<variableExpression><![CDATA[($F{tipo-frase}.equals("1") && $F{codigo-escenario}.equals("3")) ? $F{descripcion}.concat(" (" + $F{numero-resolucion} + " - " + new SimpleDateFormat("dd'/'MM'/'yyyy").format( new SimpleDateFormat("yyyy-MM-dd").parse($F{fecha-resolucion})) + ")") :
+($F{tipo-frase}.equals("7") && ($F{codigo-escenario}.equals("1") || $F{codigo-escenario}.equals("2"))) ? $F{descripcion}.concat(", " + $F{numero-resolucion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("1")) ? "Exportaciones. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("2")) ? "Servicios que presten las instituciones fiscalizadas por la SIB. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("3")) ? "Ventas de cooperativas. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("4")) ? "Aportes y donaciones. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("5")) ? "Cuotas periódicas a asociaciones o instituciones sociales. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("6")) ? "Servicios exentos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("7")) ? "Venta de activos de Bancos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("8")) ? "Cuotas centros educativos ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("9")) ? "Medicamentos genéricos o antirretrovirales. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("10")) ? "Vehículos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("11")) ? "Operaciones específicas de maquilas. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("12")) ? "Ventas zonas francas. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("13")) ? "Venta de vivienda. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("14")) ? "Venta de títulos y acciones. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("15")) ? "Venta al menudeo en mercados. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("16")) ? "Ventas y servicios universidades. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("17")) ? "Ventas Zolic. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("18")) ? "Ventas a exentos con resolución específica. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("19")) ? "Faltante de inventario de bienes perecederos, casos fortuitos, de fuerza mayor o delitos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("20")) ? "Aportes sociedades de emprendimiento. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("21")) ? "Otros cargos, impuestos y/o tasas a otros países, no sujetos a IVA. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("22")) ? "Las notas de débito y crédito no deben incluir IVA cuando el documento origen al que hacen referencia tampoco lo incluye. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("23")) ? "Transferencia de dominio de bienes muebles. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("24")) ? "Servicios no afectos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("25")) ? "Ventas Zolic. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("26")) ? "Boletos aéreos para beneficiarios del Dec. 31-2022. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("27")) ? "Primera venta vehículo eléctrico, motocicleta eléctrica o impulsado por hidrógeno. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("28")) ? "Primera venta vehículo eléctrico, motocicleta eléctrica, vehículo híbrido o impulsado por hidrógeno pesado o especial. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("29")) ? "Primera venta teleférico, funicular, tren eléctrico, tren ligero, tranvía o trolebús. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("30")) ? "Servicio de transporte público y transporte colectivo. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("31")) ? "Primera venta de componentes específicos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("32")) ? "Contratos Leasing Dec. 2-2021 por Arrendadadoras. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("33")) ? "Ingresos no afectos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("34")) ? "Bienes para la atención al cáncer. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("35")) ? "Donaciones para la atención al cáncer. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("4") && $F{codigo-escenario}.equals("36")) ? "Venta de productos de régimen primario y pecuario no industrializados. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("1")) ? "Exenciones generales universidades. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("2")) ? "Exenciones generales centros educativos privados. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("3")) ? "Exenciones generales iglesias. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("4")) ? "Exenciones Rentas de Actividades Lucrativas entes no lucrativos. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("5")) ? "Exenciones Rentas de Actividades Lucrativas cooperativas. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("6")) ? "Exenta ISR Zolic. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("7")) ? "Exenta ISR Usuarios Zolic. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("8")) ? "Exenciones generales entidades del Estado. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("9")) ? "Exención por servicio de carga eléctrica a otros tipos de vehículos y transporte. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("10")) ? "Exención por servicios de ensamblaje y/o producción a otros vehículos y transporte. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("11")) ? "Exención a servicios de transporte público y colectivo. ".concat($F{descripcion}) :
+($F{tipo-frase}.equals("8") && $F{codigo-escenario}.equals("12")) ? "Rentas no afectas. ".concat($F{descripcion}) : $F{descripcion}]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="0" width="344" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="ee5c68c8-5aba-4494-85e6-2c21c79ea63b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FRASE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="0" width="344" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="2266884c-78e7-4dfa-bf51-937067ae588a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{FRASE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
