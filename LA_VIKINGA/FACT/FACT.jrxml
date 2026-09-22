@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- FACT only (Factura Electrónica). Document type label is Factura Electrónica.
      Modelo is a layout label with no source node in /dte/adendas (value left blank).
-     Missing image assets (onErrorType Blank, text placeholder remains): logo-emoba.png, manual-roue-razor.png, manual-roue-velom.png.
+     Optional graphics beside this report: logo-emoba.png, manual-roue-razor.png, manual-roue-velom.png.
      fel.png is the certificador mark. -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FACT" language="groovy" pageWidth="612" pageHeight="792" columnWidth="576" leftMargin="18" rightMargin="18" topMargin="16" bottomMargin="16" uuid="1101285e-4913-4446-bd11-0e566f2773d9">
 	<property name="fel.documentType" value="FACT"/>
-	<property name="la_vikinga.missingAssets" value="logo-emoba.png, manual-roue-razor.png, manual-roue-velom.png"/>
 	<property name="la_vikinga.modelo" value="Label only. No Modelo node in sample adenda or baseline FACT fields."/>
 	<style name="Default" isDefault="true" fontName="SansSerif" fontSize="8" pdfEncoding="Cp1252"/>
 	<parameter name="ES_DESARROLLO" class="java.lang.String" isForPrompting="false">
