@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="impuestos_subreport" language="groovy" pageWidth="350" pageHeight="752" columnWidth="350" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0667ae9b-91cb-4c48-b65a-68d5a021a90b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[//impuestos-generales/impuestos-generale]]>
+	</queryString>
+	<field name="nombre-corto" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre-corto]]></fieldDescription>
+	</field>
+	<field name="monto-impuesto" class="java.lang.String">
+		<fieldDescription><![CDATA[monto-impuesto]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="230" height="15" uuid="2ea548ca-678d-4a7a-8e5e-ea1b727bda47">
+					<printWhenExpression><![CDATA[$F{nombre-corto}.equals("IVA") ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre-corto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="230" y="0" width="120" height="15" uuid="571b41b3-052f-45e0-bb8d-3cf120589b49">
+					<printWhenExpression><![CDATA[$F{nombre-corto}.equals("IVA") ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto-impuesto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
