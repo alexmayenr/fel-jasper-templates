@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FACT only (Factura Electrónica). Document type label is Factura Electrónica.
+     Modelo is a layout label with no source node in /dte/adendas (value left blank).
+     Missing image assets (onErrorType Blank, text placeholder remains): logo-emoba.png, manual-roue-razor.png, manual-roue-velom.png.
+     fel.png is the certificador mark. -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FACT" language="groovy" pageWidth="612" pageHeight="792" columnWidth="576" leftMargin="18" rightMargin="18" topMargin="16" bottomMargin="16" uuid="1101285e-4913-4446-bd11-0e566f2773d9">
+	<property name="fel.documentType" value="FACT"/>
+	<property name="la_vikinga.missingAssets" value="logo-emoba.png, manual-roue-razor.png, manual-roue-velom.png"/>
+	<property name="la_vikinga.modelo" value="Label only. No Modelo node in sample adenda or baseline FACT fields."/>
+	<style name="Default" isDefault="true" fontName="SansSerif" fontSize="8" pdfEncoding="Cp1252"/>
+	<parameter name="ES_DESARROLLO" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["true"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_EXT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{ES_DESARROLLO}.equals("true") ? ".jasper" : ".jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{ES_DESARROLLO}.equals("true") ? "" : "repo:/reports/infile/feel_brocker/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="XML_DATA_DOCUMENT" class="org.w3c.dom.Document" isForPrompting="false"/>
+	<parameter name="XML_INPUT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="XML_FILE" class="java.io.File" isForPrompting="false"/>
+	<queryString language="xPath">
+		<![CDATA[/dte/detalles/detalle]]>
+	</queryString>
+	<field name="emisor-nit" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-nit]]></fieldDescription>
+	</field>
+	<field name="emisor-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-nombre]]></fieldDescription>
+	</field>
+	<field name="emisor-nombre-comercial" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-nombre-comercial]]></fieldDescription>
+	</field>
+	<field name="emisor-direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-direccion]]></fieldDescription>
+	</field>
+	<field name="emisor-municipio" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-municipio]]></fieldDescription>
+	</field>
+	<field name="emisor-departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-departamento]]></fieldDescription>
+	</field>
+	<field name="emisor-tipo-moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/emisor/emisor-tipo-moneda]]></fieldDescription>
+	</field>
+	<field name="receptor-nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/receptor/receptor-nombre]]></fieldDescription>
+	</field>
+	<field name="receptor-nit" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/receptor/receptor-nit]]></fieldDescription>
+	</field>
+	<field name="receptor-direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/receptor/receptor-direccion]]></fieldDescription>
+	</field>
+	<field name="serie" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/serie]]></fieldDescription>
+	</field>
+	<field name="documento-no" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/documento-no]]></fieldDescription>
+	</field>
+	<field name="fecha-emision" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/fecha-emision]]></fieldDescription>
+	</field>
+	<field name="uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/uuid]]></fieldDescription>
+	</field>
+	<field name="total-letras" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/total-letras]]></fieldDescription>
+	</field>
+	<field name="total-letras-round" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/total-letras-round]]></fieldDescription>
+	</field>
+	<field name="total-numeros" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/total-numeros]]></fieldDescription>
+	</field>
+	<field name="url-validacion-sat-autorizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/dte/url-validacion-sat-autorizacion]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidad]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="precio-unitario" class="java.lang.String">
+		<fieldDescription><![CDATA[precio-unitario]]></fieldDescription>
+	</field>
+	<field name="descuento" class="java.lang.String">
+		<fieldDescription><![CDATA[descuento]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.String">
+		<fieldDescription><![CDATA[total]]></fieldDescription>
+	</field>
+	<field name="nombre-certificador" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/certificacion/nombre-certificador]]></fieldDescription>
+	</field>
+	<field name="nit" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/certificacion/nit]]></fieldDescription>
+	</field>
+	<field name="fecha-hora-certificacion" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/certificacion/fecha-hora-certificacion]]></fieldDescription>
+	</field>
+	<field name="anulado" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/datos-anulacion/anulado]]></fieldDescription>
+	</field>
+	<field name="SubTotal" class="java.lang.String">
+		<fieldDescription><![CDATA[sum(/dte/detalles/detalle/precio)]]></fieldDescription>
+	</field>
+	<field name="SubTotalDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[sum(/dte/detalles/detalle/descuento)]]></fieldDescription>
+	</field>
+	<field name="Marca" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Marca]]></fieldDescription>
+	</field>
+	<field name="Linea" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Linea]]></fieldDescription>
+	</field>
+	<field name="Tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Tipo]]></fieldDescription>
+	</field>
+	<field name="Combustible" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Combustible]]></fieldDescription>
+	</field>
+	<field name="Potencia" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Potencia]]></fieldDescription>
+	</field>
+	<field name="Color" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Color]]></fieldDescription>
+	</field>
+	<field name="Asientos" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Asientos]]></fieldDescription>
+	</field>
+	<field name="Origen" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Origen]]></fieldDescription>
+	</field>
+	<field name="VIN" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/VIN]]></fieldDescription>
+	</field>
+	<field name="Chasis" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/Chasis]]></fieldDescription>
+	</field>
+	<field name="NMotor" class="java.lang.String">
+		<fieldDescription><![CDATA[/dte/adendas/NMotor]]></fieldDescription>
+	</field>
+	<background>
+		<band height="760" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="40" y="320" width="496" height="40" forecolor="#C00000" uuid="2d694283-a8ee-486e-9e72-5c35e878d6f3">
+					<printWhenExpression><![CDATA["true".equals($F{anulado})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="28" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ANULADA]]></text>
+			</staticText>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="178" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="576" height="52" uuid="a5ceb6dc-5d6f-424e-aebd-96569fabaadb" mode="Opaque" backcolor="#000000" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="10" y="6" width="150" height="12" uuid="39726711-a475-4297-9a15-c034f7cdfe4d" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="10" y="18" width="170" height="28" uuid="32284d2d-d7b7-4001-981f-cc4354a92ada" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="20" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[EMOBA]]></text>
+			</staticText>
+<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement x="8" y="4" width="168" height="44" uuid="fba8529b-7993-401e-bac3-fbcde8014506" />
+				<imageExpression><![CDATA["logo-emoba.png"]]></imageExpression>
+			</image>
+<staticText>
+				<reportElement x="210" y="3" width="354" height="11" uuid="95de50ec-c42c-4793-915f-d7210982dbd7" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO TRIBUTARIO ELECTRONICO]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="210" y="14" width="354" height="14" uuid="b7317a81-341d-4931-964b-9df3b0407646" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Factura Electrónica]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="210" y="28" width="354" height="11" uuid="f3e809ab-a8c9-4783-b458-1f8359df9bf7" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SERIE:" + ($F{serie} == null ? "" : $F{serie})]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="210" y="39" width="354" height="11" uuid="30730593-cb2b-41a5-a014-86a31697d90a" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NO.:" + ($F{documento-no} == null ? "" : $F{documento-no})]]></textFieldExpression>
+			</textField>
+<rectangle>
+				<reportElement x="0" y="52" width="576" height="3" uuid="b81303b1-2cad-4daf-a5c5-fe589c5cdb87" mode="Opaque" backcolor="#F5C400" forecolor="#F5C400"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="0" y="60" width="200" height="12" uuid="569db978-5ef3-4516-8a74-deb5572055ce" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[EMISOR:]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="300" y="60" width="276" height="12" uuid="0febd4b5-2fa9-47cb-a696-c9e5f1a70200" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EMISIÓN]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="0" y="74" width="360" height="13" uuid="9bd8af72-30ba-4a38-99b8-4983195bf929" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{emisor-nombre-comercial}) == null ? "" : ($F{emisor-nombre-comercial}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="360" y="74" width="216" height="13" uuid="22a6e78d-998b-4a88-8157-c670d09aa47c" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{fecha-emision} == null ? "" : ($F{fecha-emision}.length() >= 10 ? $F{fecha-emision}.substring(0,10) : $F{fecha-emision}))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="0" y="88" width="400" height="12" uuid="dec45df1-bffb-41b5-a41c-7478c80de9e7" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{emisor-nombre}) == null ? "" : ($F{emisor-nombre}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="0" y="100" width="576" height="20" uuid="7fc1e941-5b79-4685-9bea-3b73e422218c" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="7" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[((($F{emisor-direccion} == null ? "" : $F{emisor-direccion}.trim())+ (($F{emisor-municipio} == null || $F{emisor-municipio}.trim().isEmpty()) ? "" :   (($F{emisor-direccion} == null || $F{emisor-direccion}.trim().isEmpty()) ? $F{emisor-municipio}.trim() : ", " + $F{emisor-municipio}.trim()))+ (($F{emisor-departamento} == null || $F{emisor-departamento}.trim().isEmpty()) ? "" :   ((($F{emisor-direccion} == null || $F{emisor-direccion}.trim().isEmpty()) && ($F{emisor-municipio} == null || $F{emisor-municipio}.trim().isEmpty())) ? $F{emisor-departamento}.trim() : ", " + $F{emisor-departamento}.trim()))) == null ? "" : (($F{emisor-direccion} == null ? "" : $F{emisor-direccion}.trim())+ (($F{emisor-municipio} == null || $F{emisor-municipio}.trim().isEmpty()) ? "" :   (($F{emisor-direccion} == null || $F{emisor-direccion}.trim().isEmpty()) ? $F{emisor-municipio}.trim() : ", " + $F{emisor-municipio}.trim()))+ (($F{emisor-departamento} == null || $F{emisor-departamento}.trim().isEmpty()) ? "" :   ((($F{emisor-direccion} == null || $F{emisor-direccion}.trim().isEmpty()) && ($F{emisor-municipio} == null || $F{emisor-municipio}.trim().isEmpty())) ? $F{emisor-departamento}.trim() : ", " + $F{emisor-departamento}.trim()))).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="0" y="120" width="280" height="12" uuid="4a98af22-b338-40a6-967a-8d91787c6212" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NIT: " + ($F{emisor-nit} == null ? "" : $F{emisor-nit})]]></textFieldExpression>
+			</textField>
+<rectangle>
+				<reportElement x="0" y="136" width="576" height="40" uuid="6998c5b3-f539-4c87-b58c-277853af669f" mode="Opaque" backcolor="#F4F4F4" forecolor="#F4F4F4"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="6" y="138" width="46" height="14" uuid="1e4c82ee-d650-4930-b66f-f9d337e858fc" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="54" y="138" width="514" height="16" uuid="123b8f0e-dd68-49b1-a566-b3baea55d050" mode="Transparent"/>
+				<box>
+					<bottomPen lineWidth="0.6" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="9" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{receptor-nombre}) == null ? "" : ($F{receptor-nombre}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="6" y="156" width="28" height="16" uuid="f68c1352-2b56-446c-87b4-7a8fbc63768b" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[NIT]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="36" y="156" width="90" height="16" uuid="a1038e5c-eb39-4497-ba46-ea53bc7be8d2" mode="Transparent"/>
+				<box>
+					<bottomPen lineWidth="0.6" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{receptor-nit}) == null ? "" : ($F{receptor-nit}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="136" y="156" width="58" height="16" uuid="7f6bb7a1-61dc-4161-86dc-5af0fd06bb39" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="196" y="156" width="372" height="16" uuid="5e1fe6dc-9d51-4f8b-876d-d4fb40774880" mode="Transparent"/>
+				<box>
+					<bottomPen lineWidth="0.6" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{receptor-direccion}) == null ? "" : ($F{receptor-direccion}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="6" width="576" height="16" uuid="78f6dce9-1226-4d55-baca-98f618003bb8" mode="Opaque" backcolor="#000000" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="0" y="6" width="48" height="16" uuid="1e972d72-6d0d-4f82-925b-55c10f8bf074" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[CANT.]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="48" y="6" width="228" height="16" uuid="1c947231-fc60-44c6-916d-045ac864c1eb" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="276" y="6" width="90" height="16" uuid="2c47a9d5-90a7-4bd6-989a-6768f9235957" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[P.UNITARIO]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="366" y="6" width="96" height="16" uuid="0d58b375-0bc0-4121-83ed-54e6f658cf9c" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="462" y="6" width="114" height="16" uuid="32164291-ae3f-4f15-a93c-81be1c256adb" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="48" height="14" uuid="a07e12ab-89e8-454a-a338-381ae292ac28" mode="Transparent"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{cantidad}) == null || ($F{cantidad}).toString().trim().isEmpty()) ? "" : new java.text.DecimalFormat("#,##0.##", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{cantidad}).toString()))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true" isStretchWithOverflow="true">
+				<reportElement x="50" y="0" width="224" height="14" uuid="5064dfe6-9ec7-4ab2-b8c5-248530031c04" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{descripcion}) == null ? "" : ($F{descripcion}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="276" y="0" width="90" height="14" uuid="c7a45f45-bcb4-4a74-8872-575145f6323a" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{precio-unitario}) == null || ($F{precio-unitario}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{precio-unitario}).toString()))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="366" y="0" width="96" height="14" uuid="3081b9a5-dcc8-4fe7-a1d7-ccc9668854cd" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{descuento}) == null || ($F{descuento}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{descuento}).toString()))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="462" y="0" width="114" height="14" uuid="389b4315-b2f8-431d-b1d9-f7bd508a9a77" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{total}) == null || ($F{total}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{total}).toString()))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="14" splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="426" splitType="Prevent">
+			<rectangle>
+				<reportElement x="0" y="0" width="576" height="16" uuid="48b70482-5452-43f9-bcd5-f6dd9947842c" mode="Opaque" backcolor="#FFF3C4" forecolor="#F5C400"/>
+				<graphicElement>
+					<pen lineWidth="0.6" lineColor="#F5C400"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="8" y="0" width="560" height="16" uuid="114032bd-6fec-437a-abb6-8bdc47826d18" mode="Transparent"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[VEHÍCULO 100% ELÉCTRICO · NO NECESITA PLACAS]]></text>
+			</staticText>
+<rectangle>
+				<reportElement x="0" y="24" width="576" height="16" uuid="d1f3a964-bd06-4c78-ba8f-99bbca4922d0" mode="Opaque" backcolor="#000000" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="8" y="24" width="200" height="16" uuid="6391fe26-d69e-4022-b9ca-c081bb07ee66" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="8" y="44" width="140" height="13" uuid="1c0f36b5-c637-45ae-9de5-f343c0faa3e2" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="44" width="268" height="13" uuid="cb7c1dd4-7ddd-455e-8c5e-e38be1d08fff" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Marca}) == null ? "" : ($F{Marca}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="57" width="140" height="13" uuid="18cf2114-1240-4cd4-bbd8-37118be70b43" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Línea]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="57" width="268" height="13" uuid="52ea3d55-9fd9-415d-8187-01853c8bfce2" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Linea}) == null ? "" : ($F{Linea}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="70" width="140" height="13" uuid="4cbe9199-75f5-4309-952d-31909684f7f9" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="70" width="268" height="13" uuid="b3fc8e37-e3cf-4dc9-b5da-2941e5a396cb" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[null]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="83" width="140" height="13" uuid="ac5c3fb1-9ef6-4442-a1ff-99933e48a3c4" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="83" width="268" height="13" uuid="f8c233db-1775-42eb-a5e3-e4e4b6766153" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Tipo}) == null ? "" : ($F{Tipo}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="96" width="140" height="13" uuid="5349a83e-eced-4b73-893d-04efb7f564d7" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Combustible]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="96" width="268" height="13" uuid="22f61c5d-79dd-4f44-8cb2-2afc9561bf9e" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Combustible}) == null ? "" : ($F{Combustible}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="109" width="140" height="13" uuid="fbb04216-d8ad-4300-bfe4-6d6e81876c75" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Potencia]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="109" width="268" height="13" uuid="af604f7b-014c-4e7e-9271-145bad7729bd" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Potencia}) == null ? "" : ($F{Potencia}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="122" width="140" height="13" uuid="ded18a3d-7be7-4b03-be51-c14b34b441f2" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="122" width="268" height="13" uuid="9e7417a5-0c47-4c25-8d07-5a0d5f618501" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Color}) == null ? "" : ($F{Color}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="135" width="140" height="13" uuid="df7c45ca-bedf-41f1-b9c1-de15fde11b23" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Asientos]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="135" width="268" height="13" uuid="e7df1e40-55b5-4532-b098-09e98ad1c2d8" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Asientos}) == null ? "" : ($F{Asientos}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="148" width="140" height="13" uuid="737183ea-96f8-4a22-b86d-f18a2762dcea" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Origen]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="148" width="268" height="13" uuid="a29df42e-bfbe-4a3a-8e18-da087b21090a" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Origen}) == null ? "" : ($F{Origen}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="161" width="140" height="13" uuid="1be89495-4f09-4c9d-b687-9096baa8da6b" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[VIN]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="161" width="268" height="13" uuid="6fdd5bcc-3e0c-4f95-8748-f6acc02fdd4e" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{VIN}) == null ? "" : ($F{VIN}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="174" width="140" height="13" uuid="7dae106c-1d27-4bdb-ac28-4ceffbb998ef" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Chasis]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="174" width="268" height="13" uuid="980cac4f-3a74-434a-9721-81e49ffc5f05" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Chasis}) == null ? "" : ($F{Chasis}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="8" y="187" width="140" height="13" uuid="0b0a4344-6d5f-4ff4-8116-2d14ccf9b460" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[No. Motor]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="300" y="187" width="268" height="13" uuid="548cc6ed-eeec-4d61-8a26-aecf4f36d34a" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{NMotor}) == null ? "" : ($F{NMotor}).toString().replace("&amp;","&").replace("&quot;","\"").replace("&Ntilde;","Ñ").replace("&ntilde;","ñ").replace("&Aacute;","Á").replace("&Eacute;","É").replace("&Iacute;","Í").replace("&Oacute;","Ó").replace("&Uacute;","Ú").replace("&aacute;","á").replace("&eacute;","é").replace("&iacute;","í").replace("&oacute;","ó").replace("&uacute;","ú").replace("&#xE1;","á").replace("&#xE9;","é").replace("&#xED;","í").replace("&#xF3;","ó").replace("&#xFA;","ú").replace("&#xC1;","Á").replace("&#xC9;","É").replace("&#xCD;","Í").replace("&#xD3;","Ó").replace("&#xDA;","Ú").replace("&#xD1;","Ñ").replace("&#xF1;","ñ").replace("&#x26;","&").replace("&#x0D;"," "))]]></textFieldExpression>
+			</textField>
+<rectangle>
+				<reportElement x="0" y="208" width="176" height="88" uuid="80328b30-f5f5-4a78-98ef-55ff6661cad0" mode="Opaque" backcolor="#000000" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="8" y="214" width="100" height="14" uuid="510e9558-82db-4c8d-953a-9a69dc948d30" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ROUE]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="8" y="228" width="100" height="10" uuid="3fe472f2-383c-42bb-9861-085c06947e2f" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[MANUAL DE USUARIO]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="8" y="240" width="100" height="12" uuid="ab37e144-ae8a-4f9c-a727-486681a2aa1e" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ROUE RAZOR]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="8" y="266" width="90" height="12" uuid="dde8a0e9-d96a-4ed6-9b36-e75e134dd12b" mode="Transparent" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ESCANEA AQUÍ]]></text>
+			</staticText>
+<rectangle>
+				<reportElement x="116" y="226" width="50" height="50" uuid="12d08c49-07fe-4042-b011-4722ba8ffdf8" mode="Opaque" backcolor="#F5C400" forecolor="#F5C400"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="116" y="226" width="50" height="50" uuid="b144c9be-2820-4cde-9eda-ec515f99a5e6" mode="Transparent" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[QR]]></text>
+			</staticText>
+<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement x="0" y="208" width="176" height="88" uuid="c669a46a-b52d-42d1-a0f0-3e4e9cc5b8dd" />
+				<imageExpression><![CDATA["manual-roue-razor.png"]]></imageExpression>
+			</image>
+<rectangle>
+				<reportElement x="184" y="208" width="176" height="88" uuid="fbf2f075-1154-4d3b-8ba5-8b09bd7ef046" mode="Opaque" backcolor="#FFFFFF" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="192" y="214" width="100" height="14" uuid="39d6c9bc-ead7-49d2-895a-e4d57a5be151" mode="Transparent" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ROUE]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="192" y="228" width="100" height="10" uuid="0797d760-5a6a-4bb7-a88b-0bef6faa9fe4" mode="Transparent" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[MANUAL DE USUARIO]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="192" y="240" width="100" height="12" uuid="4204f71c-7553-4082-82ab-fe43f7d39334" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ROUE VELOM]]></text>
+			</staticText>
+<staticText>
+				<reportElement x="192" y="266" width="90" height="12" uuid="16987074-9b7f-411c-9e69-55c56314adab" mode="Transparent" forecolor="#000000"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ESCANEA AQUÍ]]></text>
+			</staticText>
+<rectangle>
+				<reportElement x="300" y="226" width="50" height="50" uuid="0e723406-0b35-4007-a291-155b67a1921d" mode="Opaque" backcolor="#FFFFFF" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+<staticText>
+				<reportElement x="300" y="226" width="50" height="50" uuid="17629013-2186-442b-9b3a-b84abbad44a5" mode="Transparent" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[QR]]></text>
+			</staticText>
+<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement x="184" y="208" width="176" height="88" uuid="79255479-3475-4ee2-9b05-1be0a938e02d" />
+				<imageExpression><![CDATA["manual-roue-velom.png"]]></imageExpression>
+			</image>
+<staticText>
+				<reportElement x="372" y="212" width="78" height="14" uuid="152a0ef1-064a-4163-a703-2aea423bb42a" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="450" y="212" width="126" height="14" uuid="ee022626-4358-46c9-8c04-b8d116a351d0" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{SubTotal}) == null || ($F{SubTotal}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{SubTotal}).toString()))]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="372" y="228" width="78" height="14" uuid="e54d142d-4406-4fdc-8872-c439674ecbae" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="450" y="228" width="126" height="14" uuid="4902c0bf-06af-47a1-b91a-e90471126f52" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{SubTotalDesc}) == null || ($F{SubTotalDesc}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{SubTotalDesc}).toString()))]]></textFieldExpression>
+			</textField>
+<line>
+				<reportElement x="372" y="246" width="204" height="1" uuid="24f46a30-ed37-416c-ab73-f9c8f197f7c4" />
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+<staticText>
+				<reportElement x="372" y="250" width="70" height="16" uuid="dd4a9e08-ab56-4642-bdec-ee799388b69f" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="442" y="248" width="134" height="18" uuid="8af7048e-16b3-4270-81fd-6574d27e481c" mode="Transparent" forecolor="#F5C400"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{total-numeros}) == null || ($F{total-numeros}).toString().trim().isEmpty()) ? "" : ("USD".equals($F{emisor-tipo-moneda}) ? "\$" : "Q") + " " + new java.text.DecimalFormat("#,##0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.US)).format(Double.valueOf(($F{total-numeros}).toString()))]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="372" y="268" width="204" height="26" uuid="54c7c72b-9fed-4804-a86e-1cb658d80f97" mode="Transparent"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="7" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{total-letras-round} != null && !$F{total-letras-round}.trim().isEmpty()) ? $F{total-letras-round}.toUpperCase() : (($F{total-letras} != null && !$F{total-letras}.trim().isEmpty()) ? $F{total-letras}.toUpperCase() : "")]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="0" y="306" width="132" height="13" uuid="e131b55c-c63b-4350-8a8b-1c4539c12a43" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Número de Autorización:]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="134" y="306" width="250" height="13" uuid="053798d8-6783-4da2-9ded-f27d051a4e03" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uuid} == null ? "" : $F{uuid}]]></textFieldExpression>
+			</textField>
+<staticText>
+				<reportElement x="0" y="320" width="132" height="13" uuid="faa5c605-fdda-4bee-918f-d165048e3fc6" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Fecha de Certificación:]]></text>
+			</staticText>
+<textField isBlankWhenNull="true">
+				<reportElement x="134" y="320" width="250" height="13" uuid="7fe9aad0-22a7-4f8a-bd19-b2ddd57afbc1" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="7" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha-hora-certificacion} == null ? "" : $F{fecha-hora-certificacion}]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="0" y="336" width="280" height="13" uuid="cd59ab1b-2fed-4c46-89d8-ab6228d80e79" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CERTIFICADOR: " + ($F{nombre-certificador} == null ? "" : $F{nombre-certificador})]]></textFieldExpression>
+			</textField>
+<textField isBlankWhenNull="true">
+				<reportElement x="280" y="336" width="100" height="13" uuid="3edac715-04af-448c-a283-21fc39836031" mode="Transparent"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NIT: " + ($F{nit} == null ? "" : $F{nit})]]></textFieldExpression>
+			</textField>
+<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="392" y="352" width="48" height="48" uuid="2babeda4-3d54-42de-ae62-d7169c791677" />
+				<imageExpression><![CDATA[($F{url-validacion-sat-autorizacion} != null && !$F{url-validacion-sat-autorizacion}.trim().isEmpty()) ? com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(new com.google.zxing.qrcode.QRCodeWriter().encode($F{url-validacion-sat-autorizacion}, com.google.zxing.BarcodeFormat.QR_CODE, 300, 300)) : com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(new com.google.zxing.qrcode.QRCodeWriter().encode("https://felpub.c.sat.gob.gt/verificador-web/publico/vistas/verificacionDte.jsf?tipo=autorizacion&numero=" + ($F{uuid} == null ? "" : $F{uuid}) + "&emisor=" + ($F{emisor-nit} == null ? "" : $F{emisor-nit}) + "&receptor=" + ($F{receptor-nit} == null ? "" : $F{receptor-nit}) + "&monto=" + ($F{total-numeros} == null ? "" : $F{total-numeros}), com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement x="448" y="354" width="120" height="44" uuid="7f47820e-158d-48bb-8956-c95f6abb0f9b" />
+				<imageExpression><![CDATA["fel.png"]]></imageExpression>
+			</image>
+<staticText>
+				<reportElement x="360" y="408" width="120" height="12" uuid="c76d8d61-6342-4a31-9378-dc49c6f588d3" mode="Transparent"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[ESCANEA EL CÓDIGO QR]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="352" width="370" height="24" uuid="08e76e79-8d0a-4e1c-9ce9-f094ef5b4fc6"/>
+				<subreportParameter name="XML_DATA_DOCUMENT">
+					<subreportParameterExpression><![CDATA[$P{XML_DATA_DOCUMENT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[($P{REPORT_DATA_SOURCE} instanceof net.sf.jasperreports.engine.data.JRXmlDataSource) ? ((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//frases/frase") : ($P{XML_DATA_DOCUMENT} != null ? new net.sf.jasperreports.engine.data.JRXmlDataSource((org.w3c.dom.Document)$P{XML_DATA_DOCUMENT}, "//frases/frase") : new net.sf.jasperreports.engine.JREmptyDataSource(0))]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "frases_subreport" + $P{SUBREPORT_EXT}]]></subreportExpression>
+			</subreport>
+		</band>
+	</lastPageFooter>
+</jasperReport>
